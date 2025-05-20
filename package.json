@@ -1,0 +1,47 @@
+{
+  "name": "no-build",
+  "version": "0.1.0",
+  "description": "A modern Rails template with no build steps using Import Maps and Propshaft",
+  "author": "Bruno Wolff <bruno@example.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "bin/no-build.js",
+  "bin": {
+    "no-build": "bin/no-build.js"
+  },
+  "files": [
+    "bin",
+    "app",
+    "config",
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "rails",
+    "importmap",
+    "propshaft",
+    "no-build",
+    "hotwire",
+    "stimulus",
+    "turbo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrBrunoWolff/no-build"
+  },
+  "scripts": {
+    "start": "bin/rails server",
+    "create": "node bin/no-build.js"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.6.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

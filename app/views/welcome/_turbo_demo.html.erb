@@ -1,0 +1,9 @@
+<turbo-frame id="demo-frame">
+  <div class="card mt-md">
+    <h2 class="card-title">Turbo Frame Example (Loaded!)</h2>
+    <div class="card-body">
+      <p>This content was loaded via Turbo Frame without a full page reload.</p>
+      <%= link_to "Back", root_path, data: { turbo_frame: "demo-frame" }, class: "button" %>
+    </div>
+  </div>
+</turbo-frame> 
