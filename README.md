@@ -204,32 +204,88 @@ Use native CSS nesting and variables:
 }
 ```
 
-## 🚀 Using npm Packages with Import Maps
+## 🚀 Using JavaScript Dependencies
 
-Even though we're using a no-build approach, you can still use npm packages via CDN with import maps:
+This template provides multiple approaches to managing JavaScript dependencies, all without complex build steps:
 
-### Direct CDN Pinning
+### 1. Using Import Maps (Recommended)
+
+Import Maps allow you to use third-party libraries directly in your JavaScript without bundling or compiling. There are three ways to add libraries:
+
+#### A. Direct CDN Pinning
 
 ```ruby
 # In config/importmap.rb
-# Pin a package directly from a CDN
 pin "lodash-es", to: "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/+esm"
 pin "chart.js", to: "https://cdn.jsdelivr.net/npm/chart.js@4.3.0/+esm"
 ```
 
-### Using Pinned Packages
+#### B. Using the Importmap CLI
 
-Then import it in your JavaScript:
+```bash
+# Automatically download and pin NPM packages
+bin/importmap pin lodash-es
+bin/importmap pin chart.js@4.3.0
+```
+
+This downloads the package to `vendor/javascript/` and adds it to your importmap.
+
+#### C. Using Gem-provided JavaScript
+
+Some gems (like turbo-rails) include JavaScript files that are automatically added to your importmap.
+
+### 2. Understanding package.json in This Project
+
+There are two separate concerns for package.json in this template:
+
+#### A. Template Generation Tool Dependencies
+
+The root package.json is primarily for the template generation CLI tool (`bin/no-build.js`). It includes:
+
+```json
+"dependencies": {
+  "chalk": "^5.4.1",
+  "commander": "^14.0.0",
+  "fs-extra": "^11.3.0", 
+  "inquirer": "^12.6.1"
+}
+```
+
+These dependencies are for the CLI tool itself and are not used in the generated Rails application.
+
+#### B. For Your Application (Optional)
+
+When creating a new app with this template, you can use package.json for:
+
+- Development scripts: `"scripts": { "start": "bin/rails server" }`
+- Development tools: Linters, formatters, etc.
+
+Unlike traditional JS frameworks, these packages are not bundled into your application. They remain separate development tools.
+
+### 3. Using JavaScript in Your Application
+
+Once dependencies are pinned through importmap, use them in your JavaScript files:
 
 ```javascript
-// In your JavaScript file
-import { debounce } from "lodash-es"
+// In your JavaScript file (e.g., app/javascript/custom/chart.js)
+import { Chart } from "chart.js"
 
-// Use the imported functions
-const debouncedFunction = debounce(() => {
-  console.log("Debounced!")
-}, 300)
+// Create a chart
+const ctx = document.getElementById('myChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: { /* chart data */ }
+});
 ```
+
+Then import in application.js:
+
+```javascript
+// In app/javascript/application.js
+import "./custom/chart"
+```
+
+This approach allows using modern JavaScript modules without any build step or bundling process.
 
 ## 📄 License
 
