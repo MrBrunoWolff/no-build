@@ -1,47 +1,22 @@
 {
   "name": "no-build",
-  "version": "0.1.0",
-  "description": "A modern Rails template with no build steps using Import Maps and Propshaft",
-  "author": "Bruno Wolff <bruno@example.com>",
-  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Example of a no-build web project using JS/TS",
   "type": "module",
-  "main": "bin/no-build.js",
-  "bin": {
-    "no-build": "bin/no-build.js"
-  },
-  "files": [
-    "bin",
-    "app",
-    "config",
-    "Gemfile",
-    "Gemfile.lock",
-    "LICENSE",
-    "README.md"
-  ],
-  "keywords": [
-    "rails",
-    "importmap",
-    "propshaft",
-    "no-build",
-    "hotwire",
-    "stimulus",
-    "turbo"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MrBrunoWolff/no-build"
-  },
   "scripts": {
-    "start": "bin/rails server",
-    "create": "node bin/no-build.js"
+    "start": "tsx src/server.ts",
+    "dev": "nodemon --watch src --ext ts --exec tsx src/server.ts",
+    "check": "tsc --noEmit"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
-    "commander": "^14.0.0",
-    "fs-extra": "^11.3.0",
-    "inquirer": "^12.6.1"
+    "express": "^4.18.2"
   },
-  "engines": {
-    "node": ">=16.0.0"
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.30",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.0.0"
   }
 }
