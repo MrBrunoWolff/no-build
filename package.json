@@ -9,14 +9,14 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^5.2.1"
   },
   "devDependencies": {
-    "@types/express": "^5.0.2",
-    "@types/node": "^22.15.30",
-    "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1",
-    "tsx": "^4.19.4",
-    "typescript": "^5.0.0"
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2"
   }
 }
