@@ -6,19 +6,19 @@ This project demonstrates a minimal web setup with JavaScript and TypeScript wit
 
 1. Install dependencies
    ```bash
-   npm install
+   bun install
    ```
 2. Start the development server
    ```bash
-   npm start
+   bun start
    ```
 3. Visit [http://localhost:3000](http://localhost:3000) to see the demo page.
 
 ## Scripts
 
-- `npm start` - run the server with `ts-node`.
-- `npm run dev` - watch for changes using `nodemon`.
-- `npm run check` - type-check the project without emitting files.
+- `bun start` - run the server with `ts-node`.
+- `bun run dev` - watch for changes using `nodemon`.
+- `bun run check` - type-check the project without emitting files.
 
 ## License
 
