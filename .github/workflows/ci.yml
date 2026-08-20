@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.4.0
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check
+        run: bun run check
+
+      # There is no test suite, and the whole repo is one server — so the gate is
+      # that it actually serves. Starts it, asks for the page and an asset, and
+      # fails on anything but a 200.
+      - name: Serve
+        run: |
+          bun src/server.ts &
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://localhost:3000/ && break
+            sleep 0.5
+          done
+          curl -sf -o /dev/null -w 'root %{http_code} %{content_type}\n' http://localhost:3000/
+          curl -sf -o /dev/null -w 'asset %{http_code} %{content_type}\n' http://localhost:3000/main.js
+
+      # Fails the build on a high or critical advisory. The release-age gate in
+      # bunfig slows a malicious package down; this is what notices a known one.
+      - name: Audit
+        run: bun run audit
