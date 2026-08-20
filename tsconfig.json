@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    // Bun resolves modules itself; "bundler" matches how it actually behaves and
+    // drops the NodeNext extension rules this repo never needed.
+    "module": "Preserve",
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    // @types/bun supplies both the Bun global and the Node globals the server
+    // uses (process.env), so no separate @types/node is needed.
+    "types": ["bun"],
+    "lib": ["ESNext", "DOM"],
+    "noEmit": true
   },
-  "include": ["src"],
-  "ts-node": {
-    "experimentalSpecifierResolution": "node",
-    "compilerOptions": {
-      "module": "NodeNext"
-    }
-  }
+  "include": ["src"]
 }
