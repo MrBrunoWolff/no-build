@@ -4,6 +4,8 @@ A minimal web setup with JavaScript and TypeScript and no bundler, no build step
 and — as of Bun 1.4 — no dependencies either. The server is TypeScript, run
 directly by Bun. Static assets are served as standard ES modules.
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+
 The whole server is a handful of lines: Bun 1.4's `dir:` route serves `public/`
 with a directory index, correct content types, ETags with 304 replies and Range
 requests, which is everything `express.static` was here for. That replaced
