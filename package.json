@@ -1,9 +1,17 @@
 {
   "name": "no-build",
   "version": "1.0.0",
-  "license": "MIT",
   "private": true,
   "description": "Example of a no-build web project using JS/TS",
+  "bugs": {
+    "url": "https://github.com/MrBrunoWolff/no-build/issues"
+  },
+  "license": "MIT",
+  "author": "Bruno Wolff",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrBrunoWolff/no-build.git"
+  },
   "type": "module",
   "scripts": {
     "start": "bun src/server.ts",
@@ -12,11 +20,11 @@
     "audit": "bun audit --audit-level=high"
   },
   "devDependencies": {
-    "typescript": "^7.0.2",
-    "@types/bun": "^1.4.2"
+    "@types/bun": "^1.4.2",
+    "typescript": "^7.0.2"
   },
-  "packageManager": "bun@1.4.0",
   "engines": {
     "bun": ">=1.4.0"
-  }
+  },
+  "packageManager": "bun@1.4.0"
 }
