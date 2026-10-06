@@ -1,0 +1,21 @@
+{
+  "tier": "quick",
+  "bun": "1.4.2",
+  "node": "24.x",
+  "stages": {
+    "code": [
+      [
+        "bun",
+        "run",
+        "check"
+      ]
+    ],
+    "security": [
+      [
+        "bun",
+        "run",
+        "audit"
+      ]
+    ]
+  }
+}
