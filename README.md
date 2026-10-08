@@ -1,42 +1,42 @@
 # No-Build JS/TS Template
 
-A minimal web setup with JavaScript and TypeScript and no bundler, no build step
-and — as of Bun 1.4 — no dependencies either. The server is TypeScript, run
-directly by Bun. Static assets are served as standard ES modules.
+A web template that serves standard JavaScript modules directly from public/, with a TypeScript server run by Bun and no application build step.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-The whole server is a handful of lines: Bun 1.4's `dir:` route serves `public/`
-with a directory index, correct content types, ETags with 304 replies and Range
-requests, which is everything `express.static` was here for. That replaced
-express, tsx, ts-node, nodemon and `@types/express` — six dependencies down to
-two, which is what finally makes the name true.
+## Quick start
 
-## Getting Started
+Use Bun 1.4 or later for directory routes, with the version declared in [package.json](package.json) for development.
 
-1. Install dependencies
-   ```bash
-   bun install
-   ```
-2. Start the development server
-   ```bash
-   bun start
-   ```
-3. Visit [http://localhost:3000](http://localhost:3000) to see the demo page.
+```sh
+git clone https://github.com/MrBrunoWolff/no-build.git
+cd no-build
+bun install --frozen-lockfile
+bun run dev
+```
 
-`PORT` overrides the port.
+Open [localhost:3000](http://localhost:3000). Set `PORT` to use another port.
+
+## Features
+
+- Browser JavaScript runs as standard ES modules.
+- Bun serves static assets with content types, ETags and range requests.
+- Server hot reloading and TypeScript checks without emitting files.
 
 ## Scripts
 
-- `bun start` — run the server.
-- `bun run dev` — the same, with `bun --hot` reloading on change.
-- `bun run check` — type-check the project without emitting files.
-- `bun run audit` — fail on a dependency with a high or critical advisory.
+| Command            | Description                                     |
+| ------------------ | ----------------------------------------------- |
+| `bun run start`    | Run the server                                  |
+| `bun run dev`      | Run the server with hot reloading               |
+| `bun run check`    | Type-check without emitting files               |
+| `bun run audit`    | Audit dependencies                              |
+| `bun run check:ci` | Run the complete repository validation contract |
 
-## Requirements
+## Development
 
-Bun 1.4 or newer: the `dir:` static route the server is built on landed in 1.4.
+Edit browser modules in `public/` and the server in `src/server.ts`. Browser assets must be JavaScript; Bun runs the server TypeScript directly. See [QUALITY.md](QUALITY.md) for validation and [bunfig.toml](bunfig.toml) for the three-day dependency release-age policy.
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).
